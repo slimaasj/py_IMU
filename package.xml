@@ -8,11 +8,13 @@
   <license>MIT</license>
 
   <buildtool_depend>ament_python</buildtool_depend>
-  
+
   <depend>rclpy</depend>
   <depend>smbus</depend>
   <depend>time</depend>
   <depend>datetime</depend>
+  <depend>sensor_msgs.msg</depend>
+  <depend>transforms3d.euler</depend>
 
   <test_depend>ament_copyright</test_depend>
   <test_depend>ament_flake8</test_depend>
