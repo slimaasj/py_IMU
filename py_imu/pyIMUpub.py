@@ -34,8 +34,6 @@ oldXAccRawValue = 0
 oldYAccRawValue = 0
 oldZAccRawValue = 0
 
-a = datetime.datetime.now()
-
 #Setup the tables for the mdeian filter. Fill them all with '1' so we dont get devide by zero error
 acc_medianTable1X = [1] * ACC_MEDIANTABLESIZE
 acc_medianTable1Y = [1] * ACC_MEDIANTABLESIZE
@@ -201,7 +199,7 @@ class PyIMUPub(Node):
 
         initIMU()
 
-
+        a = datetime.datetime.now()
 
         while True:
 
