@@ -2,6 +2,8 @@ import smbus
 bus = smbus.SMBus(1)
 import time
 import datetime
+import rclpy
+from rclpy.node import Node
 
 RAD_TO_DEG = 57.29578
 M_PI = 3.14159265358979323846
@@ -297,3 +299,19 @@ while True:
     #ACCx, ACCy, ACCz
     #GYRx, GYRy, GYRz
     #MAGx, MAGy, MAGz
+
+
+class PyIMUPub(Node):
+    def __init__(self):
+        super().__init__("pyIMUpub")
+        self.get_logger().info("This node just says 'Hello'")
+
+def main(args=None):
+    rclpy.init(args=args)
+    node = PyIMUPub()
+    rclpy.spin(node)
+    node.destroy_node()
+    rclpy.shutdown()
+    
+if __name__ == "__main__":
+    main()

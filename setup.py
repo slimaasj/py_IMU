@@ -15,12 +15,12 @@ setup(
     zip_safe=True,
     maintainer='slim',
     maintainer_email='Salimjbara@gmail.com',
-    description='TODO: Package description',
-    license='TODO: License declaration',
+    description='Publishes raw IMU and Mag',
+    license='MIT',
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'my_script = my_package.my_script:main'
+            'pyIMUpub = py_imu.pyIMUpub:main'
         ],
     },
 )
