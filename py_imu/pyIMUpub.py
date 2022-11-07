@@ -326,9 +326,9 @@ class PyIMUPub(Node):
             #GYRx, GYRy, GYRz
             #MAGx, MAGy, MAGz
 
-            imu_msg.linear_acceleration.x = ACCx
-            imu_msg.linear_acceleration.y = ACCy
-            imu_msg.linear_acceleration.z = ACCz
+            imu_msg.linear_acceleration.x = float(ACCx)
+            imu_msg.linear_acceleration.y = float(ACCy)
+            imu_msg.linear_acceleration.z = float(ACCz)
 
             #mag_msg.magnetic_field.x = MAGx
             #mag_msg.magnetic_field.y = MAGy
