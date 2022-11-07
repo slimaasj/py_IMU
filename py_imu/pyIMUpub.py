@@ -311,13 +311,13 @@ class PyIMUPub(Node):
             rate_gyr_y =  GYRy * G_GAIN
             rate_gyr_z =  GYRz * G_GAIN
 
-            if 0:                       #Change to '0' to stop showing the angles from the accelerometer
+            if 1:                       #Change to '0' to stop showing the angles from the accelerometer
                 outputString += "#  ACCx %5.2f ACCy %5.2f ACCz %5.2f  #  " % (ACCx, ACCy, ACCz)
 
-            if 0:                       #Change to '0' to stop  showing the angles from the gyro
+            if 1:                       #Change to '0' to stop  showing the angles from the gyro
                 outputString +="\t# GRYx %5.2f  GYRy %5.2f  GYRz %5.2f # " % (GYRx, GYRy, GYRz)
 
-            if 0:                       #Change to '0' to stop  showing the angles from the complementary filter
+            if 1:                       #Change to '0' to stop  showing the angles from the complementary filter
                 outputString +="\t# MAGx %5.2f  MAGy %5.2f  MAGz %5.2f # " % (MAGx, MAGy, MAGz)
 
             print(outputString)
@@ -330,11 +330,15 @@ class PyIMUPub(Node):
             imu_msg.linear_acceleration.y = float(ACCy)
             imu_msg.linear_acceleration.z = float(ACCz)
 
+            imu_msg.angular_velocity.x = float(GYRx)
+            imu_msg.angular_velocity.y = float(GYRy)
+            imu_msg.angular_velocity.z = float(GYRz)
+
             #mag_msg.magnetic_field.x = MAGx
             #mag_msg.magnetic_field.y = MAGy
             #mag_msg.magnetic_field.z = MAGz
 
-            q = quaternion_from_euler(GYRx, GYRy, GYRz)
+            q = quaternion_from_euler(float(GYRx), float(GYRy), float(GYRz))
             imu_msg.orientation.x = q[0]
             imu_msg.orientation.y = q[1]
             imu_msg.orientation.z = q[2]
