@@ -20,6 +20,7 @@ class PyIMUPub(Node):
         )
         
         RAD_TO_DEG = 57.29578
+        G_TO_MS2 = 9.80665
         M_PI = 3.14159265358979323846
         G_GAIN = 0.070          # [deg/s/LSB]  If you change the dps for gyro, you need to update this value accordingly
         AA =  0.40              # Complementary filter constant
@@ -306,10 +307,15 @@ class PyIMUPub(Node):
             MAGy = mag_medianTable2Y[int(MAG_MEDIANTABLESIZE/2)];
             MAGz = mag_medianTable2Z[int(MAG_MEDIANTABLESIZE/2)];
 
-            #Convert Gyro raw to degrees per second
-            rate_gyr_x =  GYRx * G_GAIN
-            rate_gyr_y =  GYRy * G_GAIN
-            rate_gyr_z =  GYRz * G_GAIN
+            #Convert Gyro raw to rad per second
+            GYRx =  (GYRx * G_GAIN)/RAD_TO_DEG
+            GYRy =  (GYRy * G_GAIN)/RAD_TO_DEG
+            GYRz =  (GYRz * G_GAIN)/RAD_TO_DEG
+
+            #Convert Accel to m/s
+            ACCx = ((ACCx * 0.244)/1000) * G_TO_MS2
+            ACCy = ((ACCy * 0.244)/1000) * G_TO_MS2
+            ACCz = ((ACCz * 0.244)/1000) * G_TO_MS2
 
             if 1:                       #Change to '0' to stop showing the angles from the accelerometer
                 outputString += "#  ACCx %5.2f ACCy %5.2f ACCz %5.2f  #  " % (ACCx, ACCy, ACCz)
